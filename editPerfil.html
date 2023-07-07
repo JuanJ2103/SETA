@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="css/bootstrap.css" type="text/css">
+  <title>Edicion de Información</title>
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+  <style>
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #f5f8e8; /* Amarillo pastel */
+    }
+
+    .card {
+      background-color: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+
+    #profile-image {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      overflow: hidden;
+      cursor: pointer;
+      margin: 0 auto 20px;
+      background-color: white;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    #profile-image:hover {
+      opacity: 0.8;
+    }
+
+    #profile-image input[type="file"] {
+      display: none;
+    }
+
+    #profile-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .text-center-custom {
+      text-align: center;
+    }
+
+    .form-group.apellido2 {
+      margin-bottom: 0;
+    }
+
+    .form-group.apellido2 .form-control {
+      width: 100%;
+    }
+
+    .form-label.samller-text {
+      font-size: 110%;
+    } 
+  </style>
+</head>
+
+<body>
+  <div class="container">
+    <div class="row justify-content-center">
+      <div class="col-md-8">
+        <div class="card">
+          <h2 class="text-center">Editar información de usuario</h2>
+
+          <form action="/guardar_informacion" method="post" enctype="multipart/form-data">
+            <div class="row">
+              <div class="col-md-12 text-center">
+                <div class="form-group">
+                  <label for="foto">Foto de perfil:</label><br>
+                  <label for="foto" id="profile-image">
+                    <img src="img/P.jpg" alt="Foto de perfil actual">
+                    
+                    <!--<input type="file" id="foto" name="foto" accept="image/*" onchange="cambiarFotoPerfil(event)">-->
+
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label class="form-label samller-text" for="nombre">Nombre:</label>
+                  <input type="text" id="nombre" name="nombre" class="form-control" placeholder="Ingrese su nombre" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="apellido1">Primer apellido:</label>
+                  <input type="text" id="apellido1" name="apellido1" class="form-control" placeholder="Ingrese su primer apellido" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="apellido2">Segundo apellido:</label>
+              <input type="text" id="apellido2" name="apellido2" class="form-control" placeholder="Ingrese su segundo apellido">
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="correo">Correo electrónico:</label>
+                  <input type="email" id="correo" name="correo" class="form-control" placeholder="Ingrese su correo electrónico" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="contrasena">Contraseña:</label>
+                  <input type="password" id="contrasena" name="contrasena" class="form-control" placeholder="Ingrese su contraseña" pattern=".{8,}" title="La contraseña debe tener al menos 8 caracteres" required>
+                </div>
+              </div>
+            </div>
+
+            <h4 class="text-center-custom">Dirección</h4>
+
+            <div class="form-group">
+              <label for="calle">Calle:</label>
+              <input type="text" id="calle" name="calle" class="form-control" placeholder="Ingrese su calle" required>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="estado">Colonia:</label>
+                  <input type="text" id="colonia" name="colonia" class="form-control" placeholder="Ingrese su colonia" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="codigo-postal">Localidad:</label>
+                  <input type="text" id="localidad" name="localidad" class="form-control" placeholder="Ingrese su Localidad">
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="estado">Estado:</label>
+                  <input type="text" id="estado" name="estado" class="form-control" placeholder="Ingrese su estado" required>
+                </div>
+              </div>
+
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="codigo-postal">Código postal:</label>
+                  <input type="text" id="codigo-postal" name="codigo-postal" class="form-control" placeholder="Ingrese su código postal" required>
+                </div>
+              </div>
+            </div>
+
+            <div class="text-center">
+              <button type="submit" class="btn btn-primary">Guardar cambios</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+   
+ <!--  <script> 
+    function cambiarFotoPerfil(event) {
+      var input = event.target;
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function(e) {
+          document.getElementById('profile-image').getElementsByTagName('img')[0].src = e.target.result;
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script>-->
+</body>
+
+</html>
